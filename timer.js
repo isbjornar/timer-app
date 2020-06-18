@@ -1,8 +1,9 @@
 class Timer {
-  constructor(d, s, p, c) {
+  constructor(d, s, p, c, r = 10) {
     this.durationInput = d;
     this.startButton = s;
     this.pauseButton = p;
+    this.timerResolution = r;
     if (c) {
       this.onStart = c.onStart;
       this.onTick = c.onTick;
@@ -14,10 +15,10 @@ class Timer {
 
   start = () => {
     if (this.onStart) {
-      this.onStart();
+      this.onStart(this.timeRemaining);
     }
     this.tick();
-    this.intervalID = setInterval(this.tick, 1000);
+    this.intervalID = setInterval(this.tick, this.timerResolution);
   };
 
   pause = () => {
@@ -25,15 +26,15 @@ class Timer {
   };
 
   tick = () => {
-    if (!this.timeRemaining) {
+    if (this.timeRemaining <= 0) {
       this.pause();
       if (this.onComplete) {
         this.onComplete();
       }
     } else {
-      this.timeRemaining--;
+      this.timeRemaining -= this.timerResolution / 1000;
       if (this.onTick) {
-        this.onTick();
+        this.onTick(this.timeRemaining);
       }
     }
   };
@@ -43,7 +44,7 @@ class Timer {
   }
 
   set timeRemaining(time) {
-    this.durationInput.value = time;
+    this.durationInput.value = time.toFixed(2);
   }
 
   // onDurationChange() {}
