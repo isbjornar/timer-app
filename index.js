@@ -17,9 +17,20 @@ class Timer {
   };
 
   tick = () => {
-    let timeRemaining = parseFloat(this.durationInput.value);
-    this.durationInput.value = timeRemaining - 1;
+    if (!this.timeRemaining) {
+      this.pause();
+    } else {
+      this.timeRemaining--;
+    }
   };
+
+  get timeRemaining() {
+    return parseFloat(this.durationInput.value);
+  }
+
+  set timeRemaining(time) {
+    this.durationInput.value = time;
+  }
 
   // onDurationChange() {}
 }
