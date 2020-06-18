@@ -16,6 +16,6 @@ let timer = new Timer(d, s, p, {
     circle.setAttribute("stroke-dashoffset", (perimeter * timeRemaining) / duration - perimeter);
   },
   onComplete() {
-    console.log("Timer finished");
+    document.body.style.backgroundColor = 'green';
   },
 });

@@ -5,7 +5,10 @@
 
 .timer {
   position: relative;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 * {
@@ -13,7 +16,8 @@
 }
 
 body {
-  font-family: 'Helvetica Neue Pro LT', Arial, sans-serif;
+  font-family: "Helvetica Neue Pro LT", Arial, sans-serif;
+  margin-top: 10%;
 }
 
 .timer input {
@@ -51,5 +55,9 @@ body {
 }
 
 button {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+input {
   background-color: rgba(0, 0, 0, 0);
 }
